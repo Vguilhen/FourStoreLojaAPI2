@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.ProductDto;
+import com.example.demo.exception.SkuNotFoundException;
 import com.example.demo.models.Product;
 import com.example.demo.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,7 @@ public class ProductService {
 
         if (productSku.isPresent()) {
             return productSku.get();
-        }
-        throw new RuntimeException("sku-inexistente");
+        } else throw new SkuNotFoundException("Sku inválido! " + "SKU digitado:" + sku);
     }
 
     public Product saveProduct(ProductDto dto) {
