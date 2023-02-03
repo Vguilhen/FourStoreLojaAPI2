@@ -64,6 +64,7 @@ public class SaleService {
 
                     product.setQuantity(currentQuantityInStock);
                     productRepository.save(product);
+                    if (currentQuantityInStock == 0) productRepository.delete(product);
 
                     orderRepository.deleteBySku(orderInList.getSku());
                     saleRepository.save(sale);
